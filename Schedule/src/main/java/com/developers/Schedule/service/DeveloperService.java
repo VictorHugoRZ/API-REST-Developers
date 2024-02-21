@@ -92,18 +92,11 @@ public class DeveloperService implements IDeveloperService{
             developer.setLanguages(dev.getLanguages());
         }
         if (dev.getTechnologies().isEmpty()) {
-            throw new Exception("Languages field is empty.");
+            throw new Exception("Technologies field is empty.");
         } else {
             developer.setTechnologies(dev.getTechnologies());
         }
-        if (Objects.nonNull(developer.getNickname()) &&
-            Objects.nonNull(developer.getName()) &&
-            Objects.nonNull(developer.getPhone()) &&
-            Objects.nonNull(developer.getEmail()) &&
-            Objects.nonNull(developer.getLanguages()) &&
-            Objects.nonNull(developer.getTechnologies())) {
-            developerRepository.save(developer);
-        }
+        developerRepository.save(developer);
         return developer;
     }
 
