@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/devs/api/v1")
@@ -22,7 +23,7 @@ public class DeveloperController {
     @Autowired
     DeveloperService developerService;
 
-    @GetMapping //All Devs
+    @GetMapping("/") //All Devs
     public ResponseEntity<?> getAllDevs() {
         List<Developer> developers = developerService.getAllDevs();
         log.info("Developers: " + developers.toString());
@@ -36,13 +37,13 @@ public class DeveloperController {
         return ResponseEntity.status(HttpStatus.OK).body(developer);
     }
 
-    @PostMapping //Create a Dev
+    @PostMapping("/create") //Create a Dev
     public ResponseEntity<?> postDev(@RequestBody Developer dev) throws Exception {
         Developer developer = developerService.postDev(dev);
         return ResponseEntity.status(HttpStatus.OK).body(developer);
     }
 
-    @PutMapping("/{id}") //Update a Dev
+    @PutMapping("/update/{id}") //Update a Dev
     public ResponseEntity<?> putDevById(@PathVariable Integer id, @RequestBody Developer dev) throws Exception{
         Developer developer = developerService.putDevById(id, dev);
         return ResponseEntity.status(HttpStatus.OK).body(developer);
@@ -52,6 +53,12 @@ public class DeveloperController {
     public ResponseEntity<?> deleteDev(@PathVariable Integer id) throws Exception {
         developerService.deleteDev(id);
         return ResponseEntity.status(HttpStatus.OK).body("The Developer was successfully removed.");
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<?> searchDevByName(@PathVariable String name) throws Exception {
+        Optional<Developer> dev = developerService.findDevByName(name);
+        return ResponseEntity.status(HttpStatus.OK).body(dev);
     }
 
     /*@GetMapping("/discontinuedRoute")  <-  This is an example of a discontinued route

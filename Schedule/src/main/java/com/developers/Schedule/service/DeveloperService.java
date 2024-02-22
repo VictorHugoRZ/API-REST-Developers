@@ -109,4 +109,14 @@ public class DeveloperService implements IDeveloperService{
             throw new Exception("The Object you want to delete does not exist.");
         }
     }
+
+    @Override
+    public Optional<Developer> findDevByName(String name) throws Exception {
+        Optional<Developer> dev = developerRepository.findDevByName(name);
+        if (dev.isPresent()) {
+            return dev;
+        } else {
+            throw new Exception("The Developer you want to find does not exist.");
+        }
+    }
 }
