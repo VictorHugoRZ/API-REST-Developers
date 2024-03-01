@@ -61,6 +61,12 @@ public class DeveloperController {
         return ResponseEntity.status(HttpStatus.OK).body(dev);
     }
 
+    @GetMapping("/nickname/{nickname}")
+    public ResponseEntity<?> searchDevByNickname(@PathVariable String nickname) throws Exception {
+        Optional<Developer> dev = developerService.findDevByNickname(nickname);
+        return ResponseEntity.status(HttpStatus.OK).body(dev);
+    }
+
     /*@GetMapping("/discontinuedRoute")  <-  This is an example of a discontinued route
     @ResponseStatus(value = HttpStatus.MOVED_PERMANENTLY, reason = "This route is discontinued.")
     public void discontinuedRoute() {}*/

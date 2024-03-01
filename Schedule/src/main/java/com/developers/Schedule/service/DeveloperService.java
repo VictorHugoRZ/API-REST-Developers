@@ -112,7 +112,17 @@ public class DeveloperService implements IDeveloperService{
 
     @Override
     public Optional<Developer> findDevByName(String name) throws Exception {
-        Optional<Developer> dev = developerRepository.findDevByName(name);
+        Optional<Developer> dev = developerRepository.findByName(name);
+        if (dev.isPresent()) {
+            return dev;
+        } else {
+            throw new Exception("The Developer you want to find does not exist.");
+        }
+    }
+
+    @Override
+    public Optional<Developer> findDevByNickname(String nickname) throws Exception {
+        Optional<Developer> dev = developerRepository.findByNicknameIgnoreCase(nickname);
         if (dev.isPresent()) {
             return dev;
         } else {

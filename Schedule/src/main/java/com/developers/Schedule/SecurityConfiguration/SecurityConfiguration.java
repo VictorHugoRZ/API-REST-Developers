@@ -1,4 +1,4 @@
-package com.developers.Schedule.SecurityConfiguration;
+package com.developers.Schedule.securityConfiguration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,6 +21,7 @@ public class SecurityConfiguration {
                     auth.requestMatchers("/devs/api/v1/").permitAll();
                     auth.requestMatchers("/devs/api/v1/{id}").permitAll();
                     auth.requestMatchers("/devs/api/v1/name/{name}").permitAll();
+                    auth.requestMatchers("/devs/api/v1/nickname/{nickname}").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .formLogin(formLogin -> formLogin

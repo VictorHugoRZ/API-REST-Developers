@@ -18,4 +18,6 @@ public interface IDeveloperService {
 
     /*We use Optional because we expect that only one value return from the database*/
     Optional<Developer> findDevByName(String name) throws Exception;
+
+    Optional<Developer> findDevByNickname(String nickname) throws Exception;
 }

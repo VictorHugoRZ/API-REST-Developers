@@ -23,7 +23,7 @@ public class DeveloperExceptionController {
     }
 
     @ExceptionHandler(NoSuchElementException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public String noSuchElementException(NoSuchElementException exception) {
         log.error(exception.getMessage());
         return "Please verify that the element you are looking for exist.";
@@ -44,7 +44,7 @@ public class DeveloperExceptionController {
     }
 
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String exception(Exception exception) {
         log.error(exception.getMessage());
         return exception.getMessage();
